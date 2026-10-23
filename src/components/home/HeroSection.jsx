@@ -94,10 +94,12 @@ export default function HeroSection() {
     <section className="hs-root">
       <style>{CSS}</style>
 
-      {/* ---------- Vidéo d'arrière-plan ---------- */}
-      <video className="hs-video" autoPlay loop muted playsInline poster="/couple-hero.png">
-        <source src="/videos/hero-video.mp4" type="video/mp4" />
+      {/* ---------- Vidéo d'arrière-plan (CORRIGÉ : poster supprimé + cache busting) ---------- */}
+      <video className="hs-video" autoPlay loop muted playsInline>
+        {/* Le ?v=2 force le navigateur à télécharger la nouvelle vidéo et ignore le cache */}
+        <source src="/videos/hero-video.mp4?v=2" type="video/mp4" />
       </video>
+      
       <div className="hs-overlay" />
       <div className="hs-grain" />
 
