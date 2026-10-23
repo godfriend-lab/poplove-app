@@ -2,91 +2,89 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="POPLOVE - Application de rencontre géolocalisée en Afrique" />
-    <meta name="theme-color" content="#0a0a0a" />
-    <title>POPLOVE - Rencontres géolocalisées</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
-    <!-- Polices Google Fonts -->
+    <!-- 🛡️ CONTRÔLE DE CACHE STRICT (Empêche l'affichage des anciennes versions) -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="version" content="2.1.0" />
+
+    <!-- 📱 SEO & Mobile -->
+    <meta name="description" content="POPLOVE - L'application de rencontre Premium géolocalisée. Trouvez l'amour en Afrique, en Europe et dans le monde." />
+    <meta name="theme-color" content="#0b0710" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <title>POPLOVE - Rencontres Premium Géolocalisées</title>
+    
+    <!-- ⚡ PERFORMANCE : Préconnexion aux domaines externes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" 
-      rel="stylesheet" 
-    />
+    <link rel="preconnect" href="https://cdn.kkiapay.me" />
+    
+    <!-- 🎨 POLICES (Alignées avec ton nouveau CSS Dashboard/Upgrade) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Styles de base -->
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+      /* Reset & Base */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
       
       body {
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-        color: white;
+        font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+        background-color: #0b0710; /* Correspond exactement à var(--bg) */
+        color: #f7eef2;
         min-height: 100vh;
         overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0a0a0a;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #ff6b9d, #e63946);
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #e63946, #c44569);
-      }
+      /* Scrollbar Premium */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #0b0710; }
+      ::-webkit-scrollbar-thumb { background: #261935; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #d6335f; }
 
+      /* Écran de chargement Ultra-Smooth */
       #loading-screen {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        inset: 0;
+        background: #0b0710;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
         z-index: 9999;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
       }
 
       #loading-screen.fade-out {
         opacity: 0;
+        visibility: hidden;
         pointer-events: none;
       }
 
       .loader-heart {
-        font-size: 4rem;
-        animation: heartbeat 1.5s ease-in-out infinite;
+        font-size: 3.5rem;
+        animation: heartbeat 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
       }
 
       .loader-text {
-        margin-top: 20px;
-        font-family: 'Playfair Display', serif;
-        font-size: 1.5rem;
+        margin-top: 16px;
+        font-family: 'Fraunces', serif;
+        font-size: 1.8rem;
         font-weight: 700;
-        background: linear-gradient(135deg, #ff6b9d, #e63946);
+        letter-spacing: 0.15em;
+        background: linear-gradient(135deg, #ff5c8a, #d6335f);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        letter-spacing: 3px;
+        text-transform: uppercase;
       }
 
       @keyframes heartbeat {
         0%, 100% { transform: scale(1); }
-        25% { transform: scale(1.1); }
-        50% { transform: scale(1); }
-        75% { transform: scale(1.1); }
+        50% { transform: scale(1.15); }
       }
     </style>
   </head>
@@ -103,44 +101,33 @@
     <!-- Script principal Vite/React -->
     <script type="module" src="/src/main.jsx"></script>
 
-    <!-- SDK KKiaPay - Version 1 -->
-    <script src="https://kkiapay.me/k.js"></script>
-    
-    <!-- SDK KKiaPay - Version 2 (fallback) -->
-    <script src="https://cdn.kkiapay.me/k.js"></script>
+    <!-- 💳 KKiaPay SDK (Chargement optimisé avec defer pour ne pas bloquer le rendu) -->
+    <script src="https://cdn.kkiapay.me/k.js" defer></script>
 
-    <!-- Script pour masquer le loader -->
+    <!-- Script de gestion intelligente du loader -->
     <script>
-      window.addEventListener('load', () => {
+      // On attend que le DOM soit prêt
+      window.addEventListener('DOMContentLoaded', () => {
         const loader = document.getElementById('loading-screen');
+        
+        // Délai de sécurité de 600ms : cela laisse le temps à React de monter 
+        // le composant Hero et de commencer à charger la vidéo, évitant ainsi 
+        // le "flash" de l'ancienne image ou d'un écran blanc.
         setTimeout(() => {
           loader.classList.add('fade-out');
+          
+          // Nettoyage complet du DOM après la transition CSS
           setTimeout(() => {
-            loader.style.display = 'none';
-          }, 500);
-        }, 800);
+            loader.remove();
+          }, 600);
+        }, 600);
       });
 
-      // Vérifier que KKiaPay est chargé
+      // Vérification silencieuse de KKiaPay
       window.addEventListener('load', () => {
-        setTimeout(() => {
-          if (typeof window.kkiapay === 'function') {
-            console.log('✅ KKiaPay SDK chargé avec succès');
-          } else {
-            console.warn('⚠️ KKiaPay SDK non chargé. Tentative de chargement alternatif...');
-            
-            // Charger dynamiquement si pas disponible
-            const script = document.createElement('script');
-            script.src = 'https://kkiapay.me/k.js';
-            script.onload = () => {
-              console.log('✅ KKiaPay SDK chargé dynamiquement');
-            };
-            script.onerror = () => {
-              console.error('❌ Impossible de charger KKiaPay SDK');
-            };
-            document.body.appendChild(script);
-          }
-        }, 1000);
+        if (typeof window.kkiapay === 'function') {
+          console.log('✅ POPLOVE: KKiaPay SDK prêt.');
+        }
       });
     </script>
   </body>
